@@ -9,3 +9,7 @@ var BaseDeDonnees = [
 {'prenom':'Rodrigue','nom':'NOUEL','email':'rodrigue@hl-media.fr','mdp':'wf3'},
 {'prenom':'Nathanael','nom':'DORDONNE','email':'nathanael.d@hl-media.fr','mdp':'wf3'}
 ];
+
+
+
+var verifEmail = prompt("Entrer votre mail");
