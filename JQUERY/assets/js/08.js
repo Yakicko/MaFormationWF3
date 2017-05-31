@@ -7,7 +7,12 @@ $(function(){
     // ajouter un contact dans le tableau de contacts, mettre à jour le tableau HTML, réinitialiser le formulaire et afficher une notification
     function addContact(contact){
         contacts.push(contact);
-        $('.aucuncontact').replaceWith($("<tr><td>"+ contact.nom +"</td><td></td><td></td><td></td></tr>"))
+        if(!isContact()){
+            $('.aucuncontact').replaceWith($("<tr><td>"+ contact.nom +"</td><td>"+ contact.prenom +"</td><td>"+ contact.email +"</td><td>"+ contact.tel +"</td></tr>"));
+        }else{
+            $("<tr><td>"+ contact.nom +"</td><td>"+ contact.prenom +"</td><td>"+ contact.email +"</td><td>"+ contact.tel +"</td></tr>").appendTo($('tbody'));
+        }
+        
     }
 
     function resetForm(){
@@ -19,12 +24,12 @@ $(function(){
 
     }
 
-    function isContact(contact){
-        if(contact.length == 0){
-            return false;
+    function isContact(){
+        if($('#LesContacts').find('.aucuncontact').length == 0){
+            return true;
         }
         else{
-            return true;
+            return false;
         }
     }
 
@@ -84,7 +89,7 @@ $('#contact').on('submit', function(event){
         $("<p class='text-danger'>Vérifiez votre numéro !</p>").appendTo(tel.parent());
     }
     if($(this).find('.has-error').length == 0){
-        $(this).prepend("<div class='alert alert-success'>Votre Demande a bien été envoyée ! Nous vous répondrons dans les meilleurs délais.</div>");
+        $(this).prepend("<div class='alert alert-success'>Contact enregistré avec succès.</div>");
         var objContact = {
             "nom"    : nom.val(),
             "prenom" : prenom.val(),
@@ -96,7 +101,7 @@ $('#contact').on('submit', function(event){
         console.log(contacts);
     }
     else{
-        $(this).prepend("<div class='alert alert-danger'>Nous n'avons pas été en mesure de valider votre demande.</div>");
+        $(this).prepend("<div class='alert alert-danger'>Erreur ! vérifiez les champs concernés.</div>");
     }
 
 
