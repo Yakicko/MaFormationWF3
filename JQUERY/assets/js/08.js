@@ -7,7 +7,7 @@ $(function(){
     // ajouter un contact dans le tableau de contacts, mettre à jour le tableau HTML, réinitialiser le formulaire et afficher une notification
     function addContact(contact){
         contacts.push(contact);
-        
+        $('.aucuncontact').replaceWith($("<tr><td>"+ contact.nom +"</td><td></td><td></td><td></td></tr>"))
     }
 
     function resetForm(){
@@ -54,7 +54,7 @@ $('#contact').on('submit', function(event){
     $('#contact .alert-danger').remove();
     $('#contact .alert-success').remove();
 
-
+    
     var nom = $('#nom');
     var prenom = $('#prenom');
     var email = $('#email');
@@ -93,6 +93,7 @@ $('#contact').on('submit', function(event){
         }
         resetForm();
         addContact(objContact);
+        console.log(contacts);
     }
     else{
         $(this).prepend("<div class='alert alert-danger'>Nous n'avons pas été en mesure de valider votre demande.</div>");
