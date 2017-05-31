@@ -50,9 +50,13 @@
         |   de sa demande de contact.                      |
         |                                                  |
         ------------------------------------------------- */
-        $('#MonFormulaire').on('submit',function(event){
-            event.preventDefault();
-            $(this).replaceWith('<p>Bonjour ' + $('input').val() + ' !</p>');
+        $(function(){
+
+            $('#MonFormulaire').on('submit',function(event){
+                e.preventDefault();
+                
+            });
+            
         });
     </script>
 </body>
