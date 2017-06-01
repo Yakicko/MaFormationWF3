@@ -6,12 +6,14 @@ $(function(){
     // DECLARATION DES FONCTION
     // ajouter un contact dans le tableau de contacts, mettre à jour le tableau HTML, réinitialiser le formulaire et afficher une notification
     function addContact(contact){
+        
+
         contacts.push(contact);
-        if(!isContact()){
-            $('.aucuncontact').replaceWith($("<tr><td>"+ contact.nom +"</td><td>"+ contact.prenom +"</td><td>"+ contact.email +"</td><td>"+ contact.tel +"</td></tr>"));
-        }else{
+        
             $("<tr><td>"+ contact.nom +"</td><td>"+ contact.prenom +"</td><td>"+ contact.email +"</td><td>"+ contact.tel +"</td></tr>").appendTo($('tbody'));
-        }
+            $('.aucuncontact').hide();
+       
+        
         
     }
 
@@ -24,13 +26,23 @@ $(function(){
 
     }
 
-    function isContact(){
-        if($('#LesContacts').find('.aucuncontact').length == 0){
-            return true;
+    function isContact(Contact){
+        // -- Vérification de la présence d'un contact dans contacts
+        var estPresent = false;
+
+        // --on parcourt le tableau a la recherche d'une correspondance
+        for(var i = 0;i<contacts.length;i++){
+            // -- vérification pour chaque contact du tableau, s'il y a une correspondance avec mon objet Contact
+            if(Contact.email === contacts[i].email){
+                
+                estPresent = true;
+
+                break;
+            }
         }
-        else{
-            return false;
-        }
+
+        return estPresent;
+
     }
 
     function validateEmail(email){
@@ -70,11 +82,21 @@ $('#contact').on('submit', function(event){
 
         $("<p class='text-danger'>N'oubliez pas votre nom !</p>").appendTo(nom.parent());
     }
+    else if(nom.val().length<=3){
+        nom.parent().addClass('has-error');
+
+        $("<p class='text-danger'>4 charactère minimum !</p>").appendTo(nom.parent());
+    }
 
     if(prenom.val() == ""){
         prenom.parent().addClass('has-error');
 
         $("<p class='text-danger'>N'oubliez pas votre prénom !</p>").appendTo(prenom.parent());
+    }
+    else if(prenom.val().length<=3){
+        prenom.parent().addClass('has-error');
+
+        $("<p class='text-danger'>4 charactère minimum !</p>").appendTo(prenom.parent());
     }
 
     if(!validateEmail(email.val())){
@@ -89,15 +111,26 @@ $('#contact').on('submit', function(event){
         $("<p class='text-danger'>Vérifiez votre numéro !</p>").appendTo(tel.parent());
     }
     if($(this).find('.has-error').length == 0){
-        $(this).prepend("<div class='alert alert-success'>Contact enregistré avec succès.</div>");
+        
         var objContact = {
             "nom"    : nom.val(),
             "prenom" : prenom.val(),
             "email"  : email.val(),
             "tel"    : tel.val()
         }
-        resetForm();
-        addContact(objContact);
+        
+        if(!isContact(objContact)){
+            $(this).prepend("<div class='alert alert-success'>Contact enregistré avec succès.</div>");
+            addContact(objContact);
+            resetForm();
+        }
+        else{
+            email.parent().addClass('has-error');
+             $(this).prepend("<div class='alert alert-danger'>Erreur ! vérifiez les champs concernés.</div>");
+            $("<p class='text-danger'>email déjà utilisé !</p>").appendTo(email.parent());
+        }
+
+       
         console.log(contacts);
     }
     else{
