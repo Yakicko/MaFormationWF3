@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercice 5</title>
+    <style>
+        main{
+            width:900px;
+            margin:0 auto;
+        }
+       section{
+           width:100%;
+           height:auto;
+           min-height:200px;
+           margin-bottom:10px;
+           background-image:linear-gradient(0deg, #CCC, #FFF);
+           border:1px solid #CCC;
+       }
+       h3{
+           font-family:Arial, Helvetica, sans-serif;
+           font-weight: normal;
+           text-align: center;
+           color:#000;
+       }
+       article{
+           font-family: Arial, Helvetica, sans-serif;
+           font-size:12px;
+           padding: 20px;
+       }
+       mark{
+            background: orange;
+            color: black;
+        }
+        #markjs{
+            width:100%;
+            height:30px;
+            border-radius:3px;
+            border:1px solid skyblue;
+
+        }
+    </style>
+</head>
+<body>
+<main>
+    <input type="text" placeholder="saisissez un terme à surligner..." id="markjs"/>
+    <!--<section>
+        <header>
+            <h3> Mon article</h3>
+        </header>
+        <article>
+           Mon contenu
+        </article>
+    </section>
+    <section>
+        <header>
+            <h3> Mon article</h3>
+        </header>
+        <article>
+           Mon contenu
+        </article>
+    </section>
+    <section>
+        <header>
+            <h3> Mon article</h3>
+        </header>
+        <article>
+           Mon contenu
+        </article>
+    </section>-->
+</main>
+    
+    <!--
+        CONSIGNE:
+        Avec l'aide de jQuery:
+
+        1.Définir une structure HTML5 et CSS3 pour afficher des articles.
+        2.Afficher une liste d'articles à partir de l'API :
+        https://jsonplaceholder.typicode.com/posts
+        3.BONUS: Afficher uniquement les 10 premiers articles.
+        4.BONUS: Mettre en Place Markjs.io afin de surligner des mots dans les différents articles à l'aide d'un champs input.
+    -->
+  
+
+<!-- JQUERY -->
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <!--Mark.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.10.1/jquery.mark.js"></script>
+
+    <!--DEBUT DE SCRIPT-->
+    <script>
+       
+        $(function(){
+                //  -- 1.
+                
+                $.getJSON('https://jsonplaceholder.typicode.com/posts',function(articles){
+
+                    //--premire solution:boucle for (FACILE)
+                    for(i = 0 ; i < 10 ; i++){
+                        let article = articles[i];
+                        // affichage dans la page
+                        $('<section><header><h3>'+article.title+'</h3></header><article>'+article.body+'</article></section>').appendTo($('main'));
+                        $(`<section>
+                                <header>
+                                    <h3>${article.title}</h3>
+                                </header>
+                                <article>
+                                    ${article.body}
+                                </article>
+                            </section>`).appendTo($('main'));
+                    }
+                    // --2eme solution : 
+                    /*$.each(articles, function(indice, article){
+                        $(`<section>
+                                <header>
+                                    <h3>${article.title}</h3>
+                                </header>
+                                <article>
+                                    ${article.body}
+                                </article>
+                            </section>`).appendTo($('main'));
+
+                            if(indice == 10){
+                                return false;
+                            }
+                    });*/
+                   
+                    
+                });//fin du getJSON
+                  
+                $("#markjs").on("input",function(event) {
+                    // -- cette fonction va s'executer a chaque fois que l'utilisateur va lever son doigt d'une touche du clavier
+
+                    // -- Récupérer la valeur saisie par l'utilisateur
+                    var keyword = $("#markjs").val();
+
+                    $("section").unmark().mark(keyword, {
+                        "accuracy": "partially"
+                    });
+
+                });
+
+        });//fin du JQUERY
+    </script>
+   
+
+
+</body>
+</html>
