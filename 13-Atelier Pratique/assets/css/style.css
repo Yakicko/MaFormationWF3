@@ -1,0 +1,103 @@
+body{
+    background: #000;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*-------------------------------------------------------------
+                             NAV
+---------------------------------------------------------------*/
+.logo{
+    color:white;
+}
+.navbar-apple{
+    background: #1E1E1E;
+    border-radius: 0;
+    margin-bottom: 0px;
+}
+
+.navbar-apple ul{
+
+}
+
+.navbar-apple ul li{
+    margin:0 10px;
+}
+
+.navbar-apple ul li a{
+
+}
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+/*-------------------------------------------------------------
+                            SECTION MENU
+---------------------------------------------------------------*/
+
+#menu{
+    background-color:#141414;
+    
+}
+
+#projecteur{
+padding-top:20px;
+}
+#projecteur h2{
+    color:white;
+}
+#projecteur h3{
+    color:white;
+    font-weight: 300;
+}
+
+
+/*-------------------------------------------------------------
+                          SECTION IPHONE7
+---------------------------------------------------------------*/
+
+#iphone7{
+    background-image: linear-gradient(#FFF 0%, #EEE 100%);
+    padding:40px 0 0 0;
+}
+
+#iphone7 article h2{
+    font-weight: 300;
+    font-size: 36px;
+    color: #303236;
+    margin: 40px 0;
+}
+
+#iPhone7 article p {
+    margin: 40px 0;
+}
+/*-------------------------------------------------------------
+                          FORMULAIRE
+---------------------------------------------------------------*/
+#contact{
+    
+}
+
+#contact h2{
+    color:white;
+}
+
+.form-control{
+    margin:5px;
+}
+
+#contact .form-group:nth-child(2) div:first-child{
+    padding-right:7.5px;
+}
+
+#contact .form-group:nth-child(2) div:nth-child(2){
+    padding-left:7.5px;
+}
+
+
+
+
+
