@@ -1,0 +1,50 @@
+<header>
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <a href="/" class="navbar-brand">Mes Contacts</a>
+    </div>
+  </nav>
+</header>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div *ngIf="Contacts">
+          <ul class="list-group list-contacts">
+            <li class="list-group-item" *ngFor="let contact of Contacts" (click)="choisirUnContact(contact)" [class.active]="contact === contactActif">
+              {{contact.fullname}}
+            </li>
+          </ul>
+        </div> <!-- ./ IfContacts -->
+
+      </div> <!-- ./ col-sm-4 -->
+
+      <div class="col-sm-8">
+
+        <app-profil-contact [contact]="contactActif" ></app-profil-contact>
+
+        <div class="jumbotron" *ngIf="!contactActif">
+
+          <span></span>
+          <h2> Bienvenu, choisis un contact</h2>
+
+        </div> <!-- ./ jumbotron -->
+
+      </div> <!-- ./ col-sm-8 -->
+
+    </div> <!-- ./ row -->
+    <div class="formgroup">
+    <button type="button" class="btn btn-primary" (click)="reset()">reset</button>
+
+    </div>
+
+
+    <!--<p>n°{{Contact.id}} : {{Contact.fullname}}, pseudo : {{Contact.username}}</p>-->
+
+    <!--<div *ngFor="let contact of Contacts">
+      {{contact.fullname}} ({{contact.username}})
+    </div>-->
+
+    <footer class="text-center">
+      Copyright &copy; 2017
+    </footer>
+
