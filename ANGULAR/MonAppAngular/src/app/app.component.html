@@ -16,11 +16,14 @@
           </ul>
         </div> <!-- ./ IfContacts -->
 
+        <app-ajouter-contact (createContact)="addContactList($event)"></app-ajouter-contact>
+
       </div> <!-- ./ col-sm-4 -->
 
       <div class="col-sm-8">
 
         <app-profil-contact [contact]="contactActif" ></app-profil-contact>
+        
 
         <div class="jumbotron" *ngIf="!contactActif">
 
@@ -32,7 +35,8 @@
       </div> <!-- ./ col-sm-8 -->
 
     </div> <!-- ./ row -->
-    <div class="formgroup">
+    <div class="form-group">
+    
     <button type="button" class="btn btn-primary" (click)="reset()">reset</button>
 
     </div>

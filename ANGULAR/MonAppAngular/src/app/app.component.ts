@@ -42,9 +42,13 @@ export class AppComponent {
 
   choisirUnContact(contact){
     this.contactActif = contact;
-    console.log(contact);
+    
     }
     reset(){
       this.contactActif=null;
+    }
+
+    addContactList(event){
+      this.Contacts.push(event.contact);
     }
 }

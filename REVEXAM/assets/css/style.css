@@ -1,0 +1,40 @@
+#navbar{
+    background-color:#061339;
+    border-radius:0;
+    margin-bottom:0px;
+    
+}
+#navbar a{
+    font-family: 'Merienda', cursive;
+    color:white;
+    
+}
+.title{
+    background-color:#B9CDFF;
+    background-image:url('../img/background.jpg');
+    min-height:200px;
+    color:white;
+    font-family: 'Merienda', cursive;
+    
+}
+h1{
+    margin:0px;
+    line-height: 200px;
+    text-shadow: 2px 2px #333;
+}
+h3{
+    font-family: 'Merienda', cursive;
+    color:#2F4073;
+    text-align:center;
+}
+#form{
+    padding:10px;
+    border:1px solid lightgrey;
+    border-radius:5px;
+}
+section{
+    background:#f1f1f1;
+    padding-top:50px;
+}
+
+
